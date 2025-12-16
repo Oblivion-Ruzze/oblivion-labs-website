@@ -1,0 +1,932 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-jakarta: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-manrope: 'Manrope', system-ui, sans-serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Prevent horizontal overflow only */
+  overflow-x: hidden;
+  /* Ensure full width usage */
+  width: 100%;
+  /* Allow vertical scrolling */
+  overflow-y: auto;
+  /* CRITICAL: Prevent any transform that could affect fixed positioning */
+  transform: none !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+body {
+  font-family: var(--font-jakarta), var(--font-manrope), var(--font-inter), system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'rlig' 1, 'calt' 1, 'kern' 1;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
+  background-color: #020617; /* dark-950 */
+  /* Prevent horizontal overflow only */
+  overflow-x: hidden;
+  /* Ensure full width usage */
+  width: 100%;
+  /* Remove body scrollbar - let html handle it */
+  overflow-y: visible;
+  /* Ensure minimum height */
+  min-height: 100vh;
+  /* Ensure proper positioning */
+  position: relative;
+  /* CRITICAL: Prevent any transform that could affect fixed positioning */
+  transform: none !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+}
+
+/* Custom gradient scrollbar styling */
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-track {
+  background: #0f172a; /* dark-900 */
+  border-radius: 6px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #d946ef 0%, #f43f5e 50%, #0ea5e9 100%);
+  border-radius: 6px;
+  border: 2px solid #0f172a;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #e879f9 0%, #f87171 50%, #38bdf8 100%);
+  box-shadow: 0 0 10px rgba(217, 70, 239, 0.5);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #d946ef #0f172a;
+}
+
+/* Ensure all containers prevent horizontal overflow but allow vertical scroll */
+#__next,
+#main-content,
+main {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Force navbar to stay fixed at top */
+header[class*="fixed"],
+#main-navbar-fixed {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  transform: none !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+  will-change: auto !important;
+}
+
+/* Ensure body has proper scroll behavior */
+body {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* ULTIMATE NAVBAR FIX - Forzar posicionamiento fijo absoluto */
+#main-navbar-fixed,
+header#main-navbar-fixed {
+  position: fixed !important;
+  top: 0px !important;
+  left: 0px !important;
+  right: 0px !important;
+  width: 100vw !important;
+  z-index: 999999 !important;
+  transform: translate3d(0, 0, 0) !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+  will-change: auto !important;
+  contain: layout !important;
+}
+
+
+
+/* Hide scrollbars on specific elements only, not all */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+/* Prevent horizontal overflow in sections only */
+section, article, aside {
+  overflow-x: hidden;
+}
+
+/* Specific fixes for common overflow issues */
+.container-responsive,
+.safe-area,
+.no-overflow {
+  overflow-x: hidden !important;
+  max-width: 100% !important;
+}
+
+/* Smooth transitions for specific elements only */
+.transition-colors {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.transition-transform {
+  transition: transform 0.2s ease;
+}
+
+.transition-opacity {
+  transition: opacity 0.2s ease;
+}
+
+/* Disable transitions and animations during page load */
+.preload * {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Ensure transitions work properly - OPTIMIZED for animations */
+* {
+  /* Only essential transitions - animations use their own properties */
+  transition-property: color, background-color, border-color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 0.2s;
+}
+
+/* Exclude animated elements from global transitions */
+[class*="animate-mega"],
+[style*="animation:"] {
+  transition: none !important;
+}
+
+/* Force hardware acceleration for better performance - COMPLETAMENTE DESHABILITADO */
+/* ESTA REGLA CAUSA PROBLEMAS CON POSITION FIXED - NUNCA USAR */
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Responsive container utilities */
+  .container-responsive {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: relative;
+  }
+  
+  @media (min-width: 640px) {
+    .container-responsive {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-responsive {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  
+  /* Prevent overflow utilities */
+  .no-overflow {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+  
+  .safe-area {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+  }
+  
+  /* Responsive text utilities */
+  .text-responsive {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+  
+  /* Responsive image utilities */
+  .img-responsive {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+  }
+  
+  /* Prevent absolute positioned elements from causing overflow */
+  .absolute-safe {
+    position: absolute;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+  
+  /* Responsive flex utilities */
+  .flex-responsive {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+  
+  /* Responsive grid utilities */
+  .grid-responsive {
+    display: grid;
+    min-width: 0;
+    overflow: hidden;
+  }
+  
+  /* Safe viewport units */
+  .w-screen-safe {
+    width: 100vw;
+    max-width: 100%;
+  }
+  
+  .h-screen-safe {
+    height: 100vh;
+    max-height: 100%;
+  }
+  
+  .bg-noise {
+    position: relative;
+  }
+  
+  .bg-noise::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)" opacity="0.25"/%3E%3C/svg%3E');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .gradient-mesh {
+    /* DISABLED: Expensive gradient animation */
+    background: linear-gradient(45deg, #d946ef, #f43f5e, #0ea5e9, #22c55e);
+    opacity: 0.1;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .gradient-vibrant {
+    background: linear-gradient(135deg, #d946ef 0%, #f43f5e 50%, #0ea5e9 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease-in-out infinite;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Fallback for browsers that don't support gradient text */
+    background-color: #d946ef;
+  }
+  
+  /* Improved gradient text with better browser support */
+  .gradient-text {
+    background: linear-gradient(135deg, #d946ef 0%, #f43f5e 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    /* Ensure proper spacing and prevent clipping */
+    padding: 0.1em 0;
+    /* Fallback color for unsupported browsers */
+    background-color: #d946ef;
+    /* Prevent text selection issues */
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+  }
+  
+  /* Static gradient text without animation for better performance */
+  .gradient-text-static {
+    background: linear-gradient(135deg, #d946ef 0%, #f43f5e 50%, #0ea5e9 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    padding: 0.1em 0;
+    background-color: #d946ef;
+  }
+  
+  .gradient-logo {
+    filter: invert(1) brightness(2) hue-rotate(280deg) saturate(2);
+  }
+  
+  .glass-effect {
+    backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(217, 70, 239, 0.08);
+    border: 1px solid rgba(217, 70, 239, 0.2);
+  }
+  
+  .glass-effect:hover {
+    background-color: rgba(217, 70, 239, 0.12);
+    border: 1px solid rgba(217, 70, 239, 0.3);
+  }
+  
+  .glow-effect {
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.4);
+  }
+  
+  .glow-effect:hover {
+    box-shadow: 0 0 40px rgba(217, 70, 239, 0.6);
+  }
+  
+  .translucent-card {
+    backdrop-filter: blur(20px) saturate(200%);
+    background: linear-gradient(135deg, 
+      rgba(217, 70, 239, 0.1) 0%, 
+      rgba(244, 63, 94, 0.08) 50%, 
+      rgba(14, 165, 233, 0.1) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* Animation performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Smooth animations for counters and elements */
+.animate-counter {
+  transition: all 0.3s ease-out;
+  will-change: contents;
+}
+
+/* Performance optimizations - COMPLETAMENTE DESHABILITADO */
+/* ESTA REGLA ESTABA CAUSANDO EL PROBLEMA DEL NAVBAR - NUNCA USAR TRANSFORM EN ELEMENTOS GLOBALES */
+
+/* Ensure fixed elements work properly */
+[style*="position: fixed"],
+[style*="position:fixed"],
+#ultimate-navbar,
+#fixed-navbar-final,
+#main-navbar,
+#main-navbar-fixed {
+  transform: none !important;
+  backface-visibility: visible !important;
+  perspective: none !important;
+  position: fixed !important;
+  will-change: auto !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 99999 !important;
+}
+
+/* Optimize animations for 60fps */
+@keyframes optimized-pulse {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse {
+  animation: optimized-pulse 4s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+/* Native scroll animations - DISABLED to prevent flickering during scroll */
+.scroll-animate {
+  /* DISABLED: Causes flickering during scroll */
+  /* transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); */
+  /* will-change: transform, opacity; */
+}
+
+.scroll-animate-fast {
+  /* DISABLED: Causes flickering during scroll */
+  /* transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); */
+  /* will-change: transform, opacity; */
+}
+
+/* Optimized duration classes */
+.duration-300 {
+  transition-duration: 300ms;
+}
+
+.duration-600 {
+  transition-duration: 600ms;
+}
+
+.duration-800 {
+  transition-duration: 800ms;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate,
+  .scroll-animate-fast {
+    transition: none !important;
+  }
+}
+
+/* DISABLE ALL SCROLL-TRIGGERED ANIMATIONS TO PREVENT FLICKERING */
+.animate-fade-in,
+.animate-fade-in-up,
+.animate-fade-in-up-delay,
+.animate-fade-in-up-delay-2,
+.animate-fade-in-up-delay-3 {
+  /* Remove all fade-in animations that cause flickering during scroll */
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Pulse animation for active elements */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(217, 70, 239, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(217, 70, 239, 0.8);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Improved gradient animations */
+@keyframes gradient-x {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+/* Floating orb animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-20px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(10px) rotate(240deg);
+  }
+}
+
+@keyframes float-medium {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px) scale(1);
+  }
+  25% {
+    transform: translateX(30px) translateY(-15px) scale(1.1);
+  }
+  50% {
+    transform: translateX(-20px) translateY(-30px) scale(0.9);
+  }
+  75% {
+    transform: translateX(-40px) translateY(20px) scale(1.05);
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% {
+    transform: translateX(0px) translateY(0px) rotate(0deg);
+  }
+  20% {
+    transform: translateX(50px) translateY(-25px) rotate(72deg);
+  }
+  40% {
+    transform: translateX(30px) translateY(40px) rotate(144deg);
+  }
+  60% {
+    transform: translateX(-30px) translateY(30px) rotate(216deg);
+  }
+  80% {
+    transform: translateX(-50px) translateY(-10px) rotate(288deg);
+  }
+}
+
+/* DISABLED: Expensive animations for better performance */
+.float-slow, .float-medium, .float-fast, .pulse-glow-orb {
+  /* Static positioning - no animations for better performance */
+  opacity: 0.4;
+}
+
+/* Optimized CSS animations for better performance */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out 0.1s both;
+}
+
+.animate-fade-in-up-delay {
+  animation: fade-in-up 0.6s ease-out 0.2s both;
+}
+
+.animate-fade-in-up-delay-2 {
+  animation: fade-in-up 0.6s ease-out 0.3s both;
+}
+
+.animate-fade-in-up-delay-3 {
+  animation: fade-in-up 0.6s ease-out 0.4s both;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite 1s;
+}
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus,
+.sr-only:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Focus indicators */
+.focus-visible:focus {
+  outline: 2px solid theme('colors.primary.500');
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .gradient-text-static {
+    background: none;
+    color: theme('colors.white');
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+  }
+}
+
+/* Skip links */
+.skip-links a {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: theme('colors.primary.600');
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.3s;
+}
+
+.skip-links a:focus {
+  top: 6px;
+}
+/* 🚀 SPECTACULAR HERO ORB ANIMATIONS - Ultra Modern & Eye-Catching */
+
+/* REMOVED OLD ANIMATIONS - USING SIMPLIFIED ONES BELOW */
+
+/* Legacy animations for compatibility */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* 🎬 SPECTACULAR BOKEH ANIMATIONS - "WOW QUÉ LINDO" - SIMPLIFIED */
+
+/* Mega Orb Animations */
+@keyframes mega-float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px) scale(1.05);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-50px) translateX(-10px) scale(1.1);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-25px) scale(1.03);
+    opacity: 0.85;
+  }
+}
+
+@keyframes mega-glow {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@keyframes mega-drift {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+    opacity: 0.8;
+  }
+  33% {
+    transform: translateY(-20px) translateX(15px) rotate(120deg);
+    opacity: 1;
+  }
+  66% {
+    transform: translateY(10px) translateX(-20px) rotate(240deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes mega-wave {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) skewX(0deg);
+    opacity: 0.35;
+  }
+  25% {
+    transform: translateY(-15px) translateX(-20px) skewX(3deg);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(20px) translateX(15px) skewX(-2deg);
+    opacity: 0.8;
+  }
+  75% {
+    transform: translateY(-10px) translateX(25px) skewX(1deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes mega-sparkle {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.6;
+  }
+  25% {
+    transform: scale(1.15) rotate(90deg);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(0.85) rotate(180deg);
+    opacity: 0.4;
+  }
+  75% {
+    transform: scale(1.1) rotate(270deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes mega-twinkle {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(-12px) translateX(8px) scale(1.2);
+    opacity: 0.85;
+  }
+}
+
+@keyframes mega-dust {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.7;
+  }
+  33% {
+    transform: translateY(-8px) translateX(6px);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translateY(5px) translateX(-10px);
+    opacity: 0.5;
+  }
+}
+
+@keyframes mega-bounce {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(-15px) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes mega-zoom {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.75;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.95;
+  }
+}
+
+@keyframes mega-flare {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.8;
+  }
+  25% {
+    transform: translateY(-5px) translateX(3px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(3px) translateX(-4px) scale(0.9);
+    opacity: 0.95;
+  }
+  75% {
+    transform: translateY(-4px) translateX(5px) scale(1.05);
+    opacity: 0.7;
+  }
+}
+
+/* 🎬 BOKEH ANIMATION CLASSES - MATCHING HEROSECTION */
+.animate-mega-float {
+  animation: mega-float 12s ease-in-out infinite;
+}
+
+.animate-mega-glow {
+  animation: mega-glow 15s linear infinite;
+}
+
+.animate-mega-drift {
+  animation: mega-drift 10s ease-in-out infinite;
+}
+
+.animate-mega-wave {
+  animation: mega-wave 14s ease-in-out infinite;
+}
+
+.animate-mega-sparkle {
+  animation: mega-sparkle 8s ease-in-out infinite;
+}
+
+.animate-mega-twinkle {
+  animation: mega-twinkle 6s ease-in-out infinite;
+}
+
+.animate-mega-dust {
+  animation: mega-dust 9s ease-in-out infinite;
+}
+
+.animate-mega-bounce {
+  animation: mega-bounce 7s ease-in-out infinite;
+}
+
+.animate-mega-zoom {
+  animation: mega-zoom 5s ease-in-out infinite;
+}
+
+.animate-mega-flare {
+  animation: mega-flare 11s ease-in-out infinite;
+}
+
+.animate-mega-pulse {
+  animation: mega-float 8s ease-in-out infinite, mega-glow 4s ease-in-out infinite alternate;
+}
+
+/* OLD BOKEH ANIMATIONS REMOVED - REPLACED WITH SIMPLIFIED MEGA ANIMATIONS ABOVE */

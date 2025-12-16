@@ -1,0 +1,54 @@
+import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
+import type { Language, AnimationState } from '@/types'
+
+interface AppState extends AnimationState {
+  // Language state
+  language: Language
+  setLanguage: (language: Language) => void
+  
+  // Navigation state
+  setCurrentSection: (section: number) => void
+  setIsTransitioning: (isTransitioning: boolean) => void
+  setScrollDirection: (direction: 'up' | 'down') => void
+  
+  // Project state
+  setSelectedProject: (projectId: string | null) => void
+  setProjectPanelVisible: (visible: boolean) => void
+  
+  // Animation state
+  setAnimationsEnabled: (enabled: boolean) => void
+  
+  // Menu state (mobile)
+  isMobileMenuOpen: boolean
+  setMobileMenuOpen: (open: boolean) => void
+}
+
+export const useAppStore = create<AppState>()(
+  devtools(
+    (set) => ({
+      // Initial state
+      language: 'en',
+      currentSection: 0,
+      isTransitioning: false,
+      selectedProject: null,
+      projectPanelVisible: false,
+      scrollDirection: 'down',
+      animationsEnabled: true,
+      isMobileMenuOpen: false,
+      
+      // Actions
+      setLanguage: (language) => set({ language }),
+      setCurrentSection: (currentSection) => set({ currentSection }),
+      setIsTransitioning: (isTransitioning) => set({ isTransitioning }),
+      setScrollDirection: (scrollDirection) => set({ scrollDirection }),
+      setSelectedProject: (selectedProject) => set({ selectedProject }),
+      setProjectPanelVisible: (projectPanelVisible) => set({ projectPanelVisible }),
+      setAnimationsEnabled: (animationsEnabled) => set({ animationsEnabled }),
+      setMobileMenuOpen: (isMobileMenuOpen) => set({ isMobileMenuOpen }),
+    }),
+    {
+      name: 'oblivion-app-store',
+    }
+  )
+)

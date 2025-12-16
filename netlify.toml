@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  NEXT_PUBLIC_EMAILJS_SERVICE_ID = "oblivion_contact"
+  NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = "template_XXXXXXX"
+  NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = "XXXXXXXXXXXXXXX"

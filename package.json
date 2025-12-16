@@ -1,0 +1,44 @@
+{
+  "name": "oblivion-labs-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "@supabase/supabase-js": "^2.39.7",
+    "@types/node": "^22.0.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.0",
+    "buffer": "^6.0.3",
+    "framer-motion": "^11.18.2",
+    "gsap": "^3.12.0",
+    "lenis": "^1.1.13",
+    "lucide-react": "^0.561.0",
+    "next": "^15.0.3",
+    "postcss": "^8.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "recharts": "^2.15.4",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5.6.0",
+    "zustand": "^4.5.7"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "prettier": "^3.3.0",
+    "prettier-plugin-tailwindcss": "^0.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
