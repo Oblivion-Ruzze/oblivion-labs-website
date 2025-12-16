@@ -25,7 +25,7 @@ export default function AdminPage() {
     checkAuth()
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
       const isValidAdmin = session?.user?.email === 'ruzze@oblivion.dev'
       setIsAuthenticated(isValidAdmin)
       

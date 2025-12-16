@@ -432,7 +432,7 @@ export default function SEOMetrics() {
             </div>
             <div>
               <div className="text-white font-medium">Target Long-tail Keywords</div>
-              <div className="text-gray-400 text-sm">Focus on "freelance web developer Cuba" and similar specific terms</div>
+              <div className="text-gray-400 text-sm">Focus on &quot;freelance web developer Cuba&quot; and similar specific terms</div>
             </div>
           </div>
           

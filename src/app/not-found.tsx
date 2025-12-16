@@ -33,13 +33,13 @@ export default function NotFound() {
               Lost in Space
             </h2>
             <p className="text-purple-200">
-              The page you're looking for has drifted into the void
+              The page you&apos;re looking for has drifted into the void
             </p>
           </div>
 
           <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-purple-500/20">
             <p className="text-purple-100 text-sm">
-              This page doesn't exist or has been moved to another dimension
+              This page doesn&apos;t exist or has been moved to another dimension
             </p>
           </div>
 

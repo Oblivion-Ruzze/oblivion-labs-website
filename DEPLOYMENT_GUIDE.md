@@ -1,359 +1,196 @@
-# 🚀 Guía de Despliegue - Oblivion Labs
+# 🚀 Guía Completa de Deployment - Oblivion Labs Website
 
-Esta guía te ayudará a desplegar el sitio web de Oblivion Labs desde IONOS hasta Vercel con el dominio oblivion-labs.com.
+## 📋 Checklist Pre-Deployment
 
-## 📋 Requisitos Previos
+### ✅ Configuraciones Completadas
+- [x] EmailJS configurado con Gmail (xlcodecontact@gmail.com)
+- [x] Google Analytics configurado (G-D6QYQ9PF4R)
+- [x] Next.js configurado para export estático
+- [x] Netlify.toml creado
+- [x] Variables de entorno configuradas
+- [x] Errores de ESLint corregidos
 
-- [x] Dominio oblivion-labs.com comprado en IONOS
-- [ ] Cuenta en Vercel
-- [ ] Cuenta en Zoho Mail (para el email hola@oblivion-labs.com)
-- [ ] Repositorio en GitHub con el código
+### 🔧 Configuraciones Técnicas
+- [x] `output: 'export'` en next.config.js
+- [x] `trailingSlash: true` para compatibilidad con Netlify
+- [x] `images: { unoptimized: true }` para export estático
+- [x] ESLint deshabilitado durante build (`ignoreDuringBuilds: true`)
 
-## 🌐 Paso 1: Configurar el Repositorio en GitHub
+## 🌐 Pasos para Deployment en Netlify
 
-1. **Crear repositorio en GitHub:**
-   ```bash
-   # Si no tienes el repo aún
-   git init
-   git add .
-   git commit -m "Initial commit - Oblivion Labs website"
-   git branch -M main
-   git remote add origin https://github.com/tu-usuario/oblivion-labs.git
-   git push -u origin main
+### 1. Preparar el Repositorio Git
+
+```bash
+# Si no has hecho commit aún
+git add .
+git commit -m "feat: ready for netlify deployment with analytics"
+
+# Crear repositorio en GitHub (ve a github.com)
+# Nombre sugerido: oblivion-labs-website
+
+# Conectar repositorio local con GitHub
+git remote add origin https://github.com/TU_USUARIO/oblivion-labs-website.git
+git branch -M main
+git push -u origin main
+```
+
+### 2. Configurar Netlify
+
+1. **Crear cuenta en Netlify**
+   - Ve a [netlify.com](https://netlify.com)
+   - Regístrate con GitHub (recomendado)
+
+2. **Conectar repositorio**
+   - Click en "New site from Git"
+   - Selecciona GitHub
+   - Busca y selecciona tu repositorio `oblivion-labs-website`
+
+3. **Configurar build settings**
+   - Build command: `npm run build`
+   - Publish directory: `out`
+   - Node version: `18` (ya configurado en netlify.toml)
+
+### 3. Variables de Entorno en Netlify
+
+En el dashboard de Netlify, ve a **Site settings > Environment variables** y agrega:
+
+```
+NEXT_PUBLIC_EMAILJS_SERVICE_ID = oblivion_contact
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID = template_ps2tc5y
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY = AxamBrcyXe7Bcm_Xw
+NEXT_PUBLIC_GA_MEASUREMENT_ID = G-D6QYQ9PF4R
+```
+
+### 4. Configurar Dominio Personalizado (Opcional)
+
+1. **En Netlify Dashboard:**
+   - Ve a **Site settings > Domain management**
+   - Click "Add custom domain"
+   - Ingresa: `oblivion-labs.com`
+
+2. **Configurar DNS:**
+   - En tu proveedor de dominio, configura los nameservers de Netlify
+   - O configura un CNAME record apuntando a tu sitio de Netlify
+
+### 5. Configurar SSL (Automático)
+
+Netlify automáticamente configurará SSL con Let's Encrypt. Solo espera unos minutos después del deployment.
+
+## 🔍 Verificación Post-Deployment
+
+### ✅ Checklist de Funcionalidades
+
+- [ ] **Sitio carga correctamente**
+- [ ] **Formulario de contacto funciona** (envía email a xlcodecontact@gmail.com)
+- [ ] **Cambio de idioma funciona** (ES/EN)
+- [ ] **Navegación smooth scroll funciona**
+- [ ] **Animaciones bokeh se ven correctamente**
+- [ ] **Google Analytics está tracking** (verifica en GA dashboard)
+- [ ] **Responsive design funciona** (móvil, tablet, desktop)
+- [ ] **SEO meta tags están presentes**
+
+### 🧪 Pruebas Específicas
+
+1. **Formulario de Contacto:**
+   ```
+   - Llenar todos los campos
+   - Enviar mensaje
+   - Verificar email recibido en xlcodecontact@gmail.com
+   - Verificar mensaje de confirmación en el sitio
    ```
 
-2. **Asegúrate de que estos archivos estén incluidos:**
-   - `package.json`
-   - `next.config.js`
-   - `vercel.json` (si existe)
-   - Todos los archivos de `src/`
-   - Archivos de `public/`
-
-## 🚀 Paso 2: Desplegar en Vercel
-
-### 2.1 Conectar GitHub a Vercel
-
-1. Ve a [vercel.com](https://vercel.com) y crea una cuenta
-2. Haz clic en "New Project"
-3. Conecta tu cuenta de GitHub
-4. Selecciona el repositorio `oblivion-labs`
-5. Configura el proyecto:
-   - **Framework Preset:** Next.js
-   - **Root Directory:** `./` (raíz)
-   - **Build Command:** `npm run build`
-   - **Output Directory:** `.next`
-
-### 2.2 Variables de Entorno (si las necesitas)
-
-En Vercel, ve a Settings > Environment Variables y agrega:
-
-```env
-# Analytics (si usas Supabase)
-NEXT_PUBLIC_SUPABASE_URL=tu_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_supabase_key
-
-# EmailJS (para el formulario de contacto)
-NEXT_PUBLIC_EMAILJS_SERVICE_ID=tu_service_id
-NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=tu_template_id
-NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=tu_public_key
-```
-
-### 2.3 Desplegar
-
-1. Haz clic en "Deploy"
-2. Espera a que termine el build (2-5 minutos)
-3. Tu sitio estará disponible en una URL como `oblivion-labs.vercel.app`
-
-## 🌍 Paso 3: Configurar el Dominio Personalizado
-
-### 3.1 En Vercel
-
-1. Ve a tu proyecto en Vercel
-2. Settings > Domains
-3. Agrega tu dominio: `oblivion-labs.com`
-4. También agrega: `www.oblivion-labs.com`
-5. Vercel te dará los registros DNS que necesitas
-
-### 3.2 Configurar SSL en IONOS (IMPORTANTE)
-
-**Cuando IONOS te pregunte sobre el certificado SSL:**
-
-1. Ve a tu panel de IONOS
-2. Busca "SSL Certificate" o "Certificado SSL"
-3. Selecciona: **"Use with my own server"** ⚠️ **MUY IMPORTANTE**
-4. **NO selecciones** "Use with my IONOS website"
-5. Esto es porque usarás Vercel, no el hosting de IONOS
-
-**¿Por qué "Use with my own server"?**
-- Vercel maneja automáticamente los certificados SSL
-- IONOS solo necesita saber que usarás un servidor externo
-- El certificado SSL será gestionado por Vercel, no por IONOS
-
-### 3.3 En IONOS (Configurar DNS)
-
-1. Inicia sesión en tu cuenta de IONOS
-2. Ve a "Dominios" > "oblivion-labs.com"
-3. Haz clic en "DNS"
-4. **ELIMINA todos los registros A existentes**
-5. Agrega estos registros:
-
-**Para el dominio principal:**
-```
-Tipo: A
-Nombre: @
-Valor: 76.76.19.61 (IP de Vercel)
-TTL: 3600
-```
-
-**Para www:**
-```
-Tipo: CNAME
-Nombre: www
-Valor: cname.vercel-dns.com
-TTL: 3600
-```
-
-**Alternativamente, puedes usar CNAME para ambos (RECOMENDADO):**
-```
-Tipo: CNAME
-Nombre: @
-Valor: cname.vercel-dns.com
-TTL: 3600
-
-Tipo: CNAME
-Nombre: www
-Valor: cname.vercel-dns.com
-TTL: 3600
-```
-
-### 3.4 Verificar la Configuración
-
-1. Espera 24-48 horas para la propagación DNS
-2. Verifica en: https://dnschecker.org/
-3. Tu sitio debería estar disponible en `https://oblivion-labs.com`
-4. **El SSL será automático** - Vercel lo configura por ti
-
-## 📧 Paso 4: Configurar Email con Zoho Mail
-
-### 4.1 Crear Cuenta en Zoho Mail
-
-1. Ve a [zoho.com/mail](https://www.zoho.com/mail/)
-2. Crea una cuenta gratuita
-3. Selecciona "Add your domain"
-4. Ingresa `oblivion-labs.com`
-
-### 4.2 Configurar DNS para Email
-
-En IONOS, agrega estos registros MX:
-
-```
-Tipo: MX
-Nombre: @
-Valor: mx.zoho.com
-Prioridad: 10
-TTL: 3600
-
-Tipo: MX
-Nombre: @
-Valor: mx2.zoho.com
-Prioridad: 20
-TTL: 3600
-
-Tipo: MX
-Nombre: @
-Valor: mx3.zoho.com
-Prioridad: 50
-TTL: 3600
-```
-
-**Registro TXT para verificación:**
-```
-Tipo: TXT
-Nombre: @
-Valor: zoho-verification=tu_codigo_de_verificacion
-TTL: 3600
-```
-
-### 4.3 Crear la Cuenta de Email
-
-1. Una vez verificado el dominio en Zoho
-2. Crea el usuario: `hola@oblivion-labs.com`
-3. Configura la contraseña
-4. ¡Listo! Ya tienes tu email profesional
-
-## 🔧 Paso 5: Configuraciones Adicionales
-
-### 5.1 Configurar EmailJS (Para el formulario de contacto)
-
-**Paso a paso completo:**
-
-1. **Crear cuenta en EmailJS:**
-   - Ve a [emailjs.com](https://www.emailjs.com/)
-   - Regístrate con tu email
-   - Confirma tu cuenta
-
-2. **Crear un servicio de email:**
-   - En el dashboard, ve a "Email Services"
-   - Haz clic en "Add New Service"
-   - Selecciona "Gmail" (recomendado) o "Outlook"
-   - Conecta tu cuenta `hola@oblivion-labs.com`
-   - Copia el **Service ID** (lo necesitarás después)
-
-3. **Crear un template:**
-   - Ve a "Email Templates"
-   - Haz clic en "Create New Template"
-   - Usa este template:
-
-   ```html
-   Subject: Nuevo contacto desde Oblivion Labs - {{from_name}}
-   
-   From: {{from_name}} ({{from_email}})
-   Company: {{company}}
-   Budget: {{budget}}
-   
-   Message:
-   {{message}}
-   
-   ---
-   Enviado desde oblivion-labs.com
+2. **Google Analytics:**
+   ```
+   - Abrir Google Analytics dashboard
+   - Verificar que aparezcan visitas en tiempo real
+   - Verificar eventos de navegación
    ```
 
-   - Guarda y copia el **Template ID**
-
-4. **Obtener Public Key:**
-   - Ve a "Account" > "General"
-   - Copia tu **Public Key**
-
-5. **Configurar variables en Vercel:**
-   - Ve a tu proyecto en Vercel
-   - Settings > Environment Variables
-   - Agrega estas variables:
-
-   ```env
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=tu_service_id_aqui
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=tu_template_id_aqui
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=tu_public_key_aqui
+3. **Performance:**
+   ```
+   - Usar PageSpeed Insights
+   - Verificar Core Web Vitals
+   - Objetivo: Score > 90
    ```
 
-6. **Redesplegar:**
-   - Haz un nuevo commit y push
-   - O redespliega manualmente en Vercel
+## 🚨 Solución de Problemas Comunes
 
-### 5.2 SSL Certificate
-
-Vercel automáticamente provee certificados SSL. Tu sitio será accesible via HTTPS.
-
-### 5.3 Redirects (Opcional)
-
-Si quieres que `www.oblivion-labs.com` redirija a `oblivion-labs.com`, agrega en `vercel.json`:
-
-```json
-{
-  "redirects": [
-    {
-      "source": "/(.*)",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.oblivion-labs.com"
-        }
-      ],
-      "destination": "https://oblivion-labs.com/$1",
-      "permanent": true
-    }
-  ]
-}
+### Build Fails
+```bash
+# Si el build falla, verifica:
+npm run build  # Debe funcionar localmente primero
 ```
 
-## 🧪 Paso 6: Verificar Funcionalidad Completa
+### Formulario no envía emails
+- Verificar variables de entorno en Netlify
+- Verificar que EmailJS service esté activo
+- Verificar template ID en EmailJS dashboard
 
-### 6.1 Verificar Botones y Navegación
+### Analytics no funciona
+- Verificar que G-D6QYQ9PF4R esté en variables de entorno
+- Verificar que el script esté en el HTML generado
+- Esperar 24-48 horas para datos en GA
 
-**Todos estos botones deben funcionar correctamente:**
+### Imágenes no cargan
+- Verificar que `images: { unoptimized: true }` esté en next.config.js
+- Verificar que las imágenes estén en la carpeta `public/`
 
-1. **Hero Section:**
-   - ✅ "View Our Work" → Scroll a Projects
-   - ✅ "Start Your Project" → Scroll a Contact
+## 📊 Monitoreo Post-Launch
 
-2. **Services Section:**
-   - ✅ "Get Started" (en cada servicio) → Scroll a Contact
-   - ✅ "Schedule a Consultation" → Scroll a Contact
+### Google Analytics Setup
+1. Ve a [analytics.google.com](https://analytics.google.com)
+2. Verifica que el property G-D6QYQ9PF4R esté recibiendo datos
+3. Configura goals para el formulario de contacto
 
-3. **Process Section:**
-   - ✅ "Start Your Project" → Scroll a Contact
+### Google Search Console
+1. Ve a [search.google.com/search-console](https://search.google.com/search-console)
+2. Agrega la propiedad oblivion-labs.com
+3. Verifica ownership via Google Analytics
+4. Envía el sitemap: `https://oblivion-labs.com/sitemap.xml`
 
-4. **Meet the Team Section:**
-   - ✅ "Start Your Project" → Scroll a Contact
+## 🔄 Workflow de Updates
 
-5. **Navbar:**
-   - ✅ Todos los enlaces navegan correctamente
-   - ✅ "Get Started" → Scroll a Contact
-   - ✅ Logo → Scroll a Hero
+Para futuras actualizaciones:
 
-### 6.2 Verificar Formulario de Contacto
+```bash
+# Hacer cambios en el código
+git add .
+git commit -m "feat: descripción del cambio"
+git push origin main
 
-**El formulario debe:**
-- ✅ Validar campos requeridos
-- ✅ Mostrar mensajes de error/éxito
-- ✅ Enviar emails a `hola@oblivion-labs.com`
-- ✅ Funcionar en ambos idiomas (EN/ES)
+# Netlify automáticamente rebuildeará y desplegará
+```
 
-### 6.3 Verificar Traducciones
+## 📞 Contactos de Soporte
 
-**Cambiar idioma debe actualizar:**
-- ✅ Navbar: "Technologies" / "Tecnologías"
-- ✅ Todo el contenido del sitio
-- ✅ Formulario de contacto
-- ✅ Botones y CTAs
-
-### 6.4 Verificar Responsive Design
-
-**Probar en:**
-- ✅ Desktop (1920px+)
-- ✅ Tablet (768px - 1024px)
-- ✅ Mobile (320px - 767px)
-
-## ✅ Checklist Final
-
-- [ ] Código subido a GitHub
-- [ ] Proyecto desplegado en Vercel
-- [ ] Dominio configurado en Vercel
-- [ ] DNS configurado en IONOS
-- [ ] **SSL configurado como "Use with my own server"**
-- [ ] Email configurado en Zoho Mail
-- [ ] EmailJS configurado y funcionando
-- [ ] Variables de entorno configuradas
-- [ ] SSL funcionando (https://)
-- [ ] **Todos los botones funcionando**
-- [ ] **Formulario de contacto funcionando**
-- [ ] **Traducciones funcionando**
-- [ ] Sitio accesible en oblivion-labs.com
-- [ ] **Responsive design verificado**
-
-## 🆘 Solución de Problemas
-
-### El sitio no carga
-- Verifica que los registros DNS estén correctos
-- Espera 24-48 horas para propagación
-- Usa `dig oblivion-labs.com` para verificar DNS
-
-### El email no funciona
-- Verifica los registros MX en IONOS
-- Confirma la verificación en Zoho Mail
-- Revisa la configuración de EmailJS
-
-### Errores de build en Vercel
-- Revisa los logs en Vercel Dashboard
-- Verifica que todas las dependencias estén en `package.json`
-- Asegúrate de que no hay errores de TypeScript
-
-## 📞 Contacto
-
-Si tienes problemas con el despliegue, revisa:
-- [Documentación de Vercel](https://vercel.com/docs)
-- [Documentación de IONOS](https://www.ionos.com/help/)
-- [Documentación de Zoho Mail](https://www.zoho.com/mail/help/)
+- **Netlify Support:** [netlify.com/support](https://netlify.com/support)
+- **EmailJS Support:** [emailjs.com/docs](https://emailjs.com/docs)
+- **Google Analytics:** [support.google.com/analytics](https://support.google.com/analytics)
 
 ---
 
-**¡Tu sitio web de Oblivion Labs estará listo para conquistar el mundo! 🚀**
+## 🎯 Próximos Pasos Recomendados
+
+1. **SEO Optimization:**
+   - Crear sitemap.xml
+   - Configurar robots.txt
+   - Optimizar meta descriptions
+
+2. **Performance:**
+   - Implementar lazy loading
+   - Optimizar imágenes con WebP
+   - Configurar CDN
+
+3. **Analytics Avanzados:**
+   - Configurar conversion tracking
+   - Implementar heatmaps (Hotjar)
+   - Configurar A/B testing
+
+4. **Security:**
+   - Configurar CSP headers
+   - Implementar rate limiting
+   - Configurar monitoring
+
+---
+
+**¡Tu sitio está listo para el mundo! 🌍✨**
