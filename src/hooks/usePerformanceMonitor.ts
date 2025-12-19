@@ -1,40 +1,18 @@
 import { useEffect, useRef } from 'react'
-import { useAppStore } from '@/stores/useAppStore'
 
 export const usePerformanceMonitor = () => {
-  const { setFrameRate, setPrefersReducedMotion } = useAppStore()
-  const frameCountRef = useRef(0)
-  const lastTimeRef = useRef(performance.now())
   const animationFrameRef = useRef<number>()
 
   useEffect(() => {
     // Check for reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setPrefersReducedMotion(mediaQuery.matches)
+    console.log('Reduced motion preference:', mediaQuery.matches)
 
     const handleChange = (e: MediaQueryListEvent) => {
-      setPrefersReducedMotion(e.matches)
+      console.log('Reduced motion preference changed:', e.matches)
     }
 
     mediaQuery.addEventListener('change', handleChange)
-
-    // DISABLED: Frame rate monitoring for better performance
-    // const measureFrameRate = () => {
-    //   frameCountRef.current++
-    //   const currentTime = performance.now()
-    //   
-    //   if (currentTime - lastTimeRef.current >= 1000) {
-    //     const fps = Math.round((frameCountRef.current * 1000) / (currentTime - lastTimeRef.current))
-    //     setFrameRate(fps)
-    //     
-    //     frameCountRef.current = 0
-    //     lastTimeRef.current = currentTime
-    //   }
-    //   
-    //   animationFrameRef.current = requestAnimationFrame(measureFrameRate)
-    // }
-
-    // animationFrameRef.current = requestAnimationFrame(measureFrameRate)
 
     return () => {
       mediaQuery.removeEventListener('change', handleChange)
@@ -42,7 +20,7 @@ export const usePerformanceMonitor = () => {
         cancelAnimationFrame(animationFrameRef.current)
       }
     }
-  }, [setFrameRate, setPrefersReducedMotion])
+  }, [])
 
   // Performance monitoring utilities
   const measurePerformance = (name: string, fn: () => void) => {

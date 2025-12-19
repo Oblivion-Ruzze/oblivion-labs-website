@@ -17,7 +17,6 @@ import Footer from '@/components/Footer'
 import { useSectionObserver } from '@/hooks/useSectionObserver'
 
 import { usePerformanceMonitor } from '@/hooks/usePerformanceMonitor'
-import { useAppStore } from '@/stores/useAppStore'
 
 const sections = ['hero', 'about', 'skills', 'projects', 'services', 'process', 'contact']
 
@@ -36,8 +35,8 @@ export default function Home() {
   useEffect(() => {
     // Initialize reduced motion preference
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const setPrefersReducedMotion = useAppStore.getState().setPrefersReducedMotion
-    setPrefersReducedMotion(mediaQuery.matches)
+    // Handle reduced motion preference if needed
+    console.log('Reduced motion:', mediaQuery.matches)
 
     const handleChange = (e: MediaQueryListEvent) => {
       setPrefersReducedMotion(e.matches)

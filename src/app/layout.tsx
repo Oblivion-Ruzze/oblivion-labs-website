@@ -57,6 +57,7 @@ export const viewport = {
 
 import AnalyticsProvider from '@/components/AnalyticsProvider'
 import Navbar from '@/components/Navbar'
+import { AppProvider } from '@/contexts/AppContext'
 
 export default function RootLayout({
   children,
@@ -92,12 +93,14 @@ export default function RootLayout({
           `
         }} />
         
-        {/* NAVBAR FIJO ANTES DE TODO EL CONTENIDO */}
-        <Navbar />
-        
-        <AnalyticsProvider>
-          {children}
-        </AnalyticsProvider>
+        <AppProvider>
+          {/* NAVBAR FIJO ANTES DE TODO EL CONTENIDO */}
+          <Navbar />
+          
+          <AnalyticsProvider>
+            {children}
+          </AnalyticsProvider>
+        </AppProvider>
       </body>
     </html>
   )

@@ -1,18 +1,21 @@
 'use client'
 
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
-import { useAppStore } from '@/stores/useAppStore'
+import { useAppContext } from '@/contexts/AppContext'
 import { useTranslation } from '@/hooks/useTranslation'
+import { useSectionObserver } from '@/hooks/useSectionObserver'
 import LanguageSwitcher from './LanguageSwitcher'
 import type { NavItem } from '@/types'
 
 const Navbar = () => {
   const { language } = useTranslation()
   const { 
-    currentSection, 
     isMobileMenuOpen, 
     setMobileMenuOpen
-  } = useAppStore()
+  } = useAppContext()
+  
+  const sections = ['hero', 'about', 'skills', 'projects', 'services', 'process', 'contact']
+  const currentSection = useSectionObserver(sections)
   
   const [isScrolled, setIsScrolled] = useState(false)
   

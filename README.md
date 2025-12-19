@@ -1,147 +1,106 @@
-# 🚀 Oblivion Portfolio - Professional Web Development
+# 🚀 Oblivion Labs - Corporate Website
 
-A modern, high-performance portfolio website with advanced analytics and admin dashboard.
+Modern, high-performance corporate website for Oblivion Labs - Enterprise software development and AI solutions.
 
 ## ✨ Features
 
-- **🎨 Modern Design**: Cutting-edge UI with smooth animations
-- **⚡ Performance**: Next.js 15 with optimal Core Web Vitals
-- **📱 Responsive**: Perfect on all devices
+- **⚡ Next.js 15**: Latest React framework with App Router
+- **🎨 Modern Design**: Clean, professional UI with bokeh animations
+- **📱 Responsive**: Perfect on all devices and screen sizes
 - **🌐 Multilingual**: English & Spanish support
-- **📊 Analytics**: Real-time user behavior tracking
-- **🔐 Admin Panel**: Secure dashboard with interactive charts
-- **🔍 SEO Optimized**: Full SEO with structured data
+- **📊 Analytics**: Google Analytics integration (G-D6QYQ9PF4R)
+- **📧 Contact Form**: EmailJS integration for inquiries
+- **🔍 SEO Optimized**: Full SEO with meta tags and structured data
+- **🚀 Performance**: Optimized for Core Web Vitals
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 15, TypeScript, Tailwind CSS
 - **Animations**: Framer Motion, GSAP, Lenis
-- **Backend**: Supabase (PostgreSQL + Auth)
-- **Charts**: Recharts for interactive visualizations
-- **Deployment**: Vercel + Custom Domain
+- **Email**: EmailJS
+- **Analytics**: Google Analytics
+- **Deployment**: Vercel
 
 ## 🚀 Quick Start
 
 ```bash
 # Clone repository
-git clone <your-repo-url>
-cd oblivion-portfolio
+git clone https://github.com/Oblivion-Ruzze/oblivion-labs-website.git
+cd oblivion-labs-website
 
 # Install dependencies
 npm install
 
 # Set up environment variables
 cp .env.local.example .env.local
-# Fill in your Supabase and EmailJS credentials
+# Fill in your EmailJS credentials
 
 # Run development server
 npm run dev
 ```
 
-## 🔐 Admin Panel
+## 📧 Environment Variables
 
-**Access**: `/admin/login`
-- **Username**: `Ruzze`
-- **Password**: `sAUnuaiX.123Gabriela`
+Create a `.env.local` file with:
 
-### Dashboard Features
-- 📊 **Real-time Analytics**: Live user metrics
-- ⏱️ **Engagement Tracking**: Session duration (1min, 3min, 5min, 10min+)
-- 📈 **Interactive Charts**: Traffic, conversions, SEO metrics
-- 🎯 **Conversion Funnel**: Complete user journey analysis
-- 🌍 **Geographic Data**: Visitor locations and demographics
-- 📱 **Device Analytics**: Desktop/mobile/tablet breakdown
+```env
+# EmailJS Configuration
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 
-## 🌐 Deployment Guide
-
-### 1. Configure Supabase Backend
-
-1. **Create Supabase Project**:
-   - Go to [supabase.com](https://supabase.com)
-   - Create new project
-   - Copy URL and anon key
-
-2. **Set up Database**:
-   ```sql
-   -- Run this in Supabase SQL Editor
-   -- Copy content from supabase-schema.sql
-   ```
-
-3. **Create Admin User**:
-   - Go to Authentication > Users
-   - Add user: `ruzze@oblivion.dev` / `sAUnuaiX.123Gabriela`
-
-### 2. Deploy to Vercel
-
-1. **Install Vercel CLI**:
-   ```bash
-   npm i -g vercel
-   ```
-
-2. **Deploy**:
-   ```bash
-   vercel --prod
-   ```
-
-3. **Set Environment Variables** in Vercel Dashboard:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
-   NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
-   NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
-   NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
-   ```
-
-### 3. Configure Custom Domain (Ionos)
-
-1. **In Vercel Dashboard**:
-   - Go to Project Settings > Domains
-   - Add your domain: `yourdomain.com`
-
-2. **In Ionos DNS Settings**:
-   ```
-   Type: CNAME
-   Name: www
-   Value: cname.vercel-dns.com
-
-   Type: A
-   Name: @
-   Value: 76.76.19.61
-   ```
-
-## 📊 Analytics Architecture
-
-```
-Frontend (Next.js) → Supabase (PostgreSQL) → Admin Dashboard
-     ↓                      ↓                      ↓
-User Tracking          Data Storage         Real-time Charts
+# Google Analytics
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
 ```
 
-### Data Collected
-- **Page Views**: Path, duration, device, location
-- **User Sessions**: Duration, pages visited, conversions
-- **Custom Events**: Scroll depth, form interactions
-- **Contact Submissions**: Lead tracking and management
+## 🌐 Deployment
 
-## 🔒 Security Features
+### Vercel (Recommended)
 
-- **Authentication**: Supabase Auth with specific credentials
-- **Rate Limiting**: 3 failed attempts = 15min block
-- **Row Level Security**: Database-level access control
-- **HTTPS**: SSL encryption for all traffic
-- **CSRF Protection**: Built-in Next.js security
-
-## 📈 Performance
-
-- **Lighthouse Score**: 100/100
-- **Core Web Vitals**: All green
-- **Bundle Size**: Optimized with code splitting
-- **Animation**: 60fps guaranteed
-
-## 🛠️ Development
+1. Push code to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy!
 
 ```bash
-# Development server
+# Build for production
+npm run build
+
+# Start production server
+npm start
+```
+
+## 📊 Features Overview
+
+### 🎯 Hero Section
+- Animated bokeh effects
+- Smooth scroll animations
+- Call-to-action buttons
+
+### 💼 Services
+- Full-Stack Web Development
+- Logo Design & Branding
+- AI Integration
+- Business Websites
+- Technical Consulting
+- Website Maintenance
+
+### 🛠️ Technologies
+- Frontend: React, Next.js, Tailwind CSS
+- Backend: Node.js, Express, PostgreSQL
+- Design: Photoshop, Illustrator
+- Tools: Git, VS Code, Python
+
+### 📬 Contact Form
+- Real-time validation
+- EmailJS integration
+- Success/error notifications
+- Spam protection
+
+## 🔧 Development
+
+```bash
+# Run development server
 npm run dev
 
 # Build for production
@@ -154,12 +113,16 @@ npm run type-check
 npm run lint
 ```
 
-## 📞 Support
+## 📝 License
 
-- **Documentation**: See `ANALYTICS_SETUP.md`
-- **Issues**: Check console for errors
-- **Email**: Contact for technical support
+MIT License - see LICENSE file for details
+
+## 👥 Contact
+
+- **Email**: hola@oblivion-labs.com
+- **Website**: https://oblivion-labs.com
+- **GitHub**: https://github.com/Oblivion-Ruzze
 
 ---
 
-**🎯 Production-ready portfolio with enterprise-grade analytics**
+**Built with ❤️ and lots of ☕ in Cuba**

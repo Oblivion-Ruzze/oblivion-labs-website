@@ -376,7 +376,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       {
         id: 'ecommerce-platform',
         title: 'E-commerce Platform',
-        description: 'Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, inventory management, and admin dashboard.',
+        description: 'Full-stack e-commerce solution with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, and inventory management.',
         technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
         image: '/api/placeholder/600/400',
         icon: '🛒',
@@ -836,7 +836,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       {
         id: 'ecommerce-platform',
         title: 'Plataforma E-commerce',
-        description: 'Solución e-commerce full-stack con React, Node.js y PostgreSQL. Incluye autenticación de usuarios, procesamiento de pagos, gestión de inventario y panel de administración.',
+        description: 'Solución e-commerce full-stack con React, Node.js y PostgreSQL. Incluye autenticación de usuarios, procesamiento de pagos y gestión de inventario.',
         technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
         image: '/api/placeholder/600/400',
         icon: '🛒',

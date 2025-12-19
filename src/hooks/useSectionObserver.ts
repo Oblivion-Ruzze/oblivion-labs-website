@@ -1,5 +1,4 @@
-import { useEffect, useRef } from 'react'
-import { useAppStore } from '@/stores/useAppStore'
+import { useEffect, useRef, useState } from 'react'
 
 const sectionMap: Record<string, number> = {
   'hero': 0,
@@ -12,7 +11,7 @@ const sectionMap: Record<string, number> = {
 }
 
 export const useSectionObserver = (sections: string[]) => {
-  const { setCurrentSection } = useAppStore()
+  const [currentSection, setCurrentSection] = useState(0)
   const ticking = useRef(false)
   const lastSectionIndex = useRef(-1)
 
@@ -74,5 +73,7 @@ export const useSectionObserver = (sections: string[]) => {
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
     }
-  }, [sections, setCurrentSection])
+  }, [sections])
+
+  return currentSection
 }

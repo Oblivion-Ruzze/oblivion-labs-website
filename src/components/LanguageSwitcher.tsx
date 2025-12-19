@@ -3,11 +3,11 @@
 import React from 'react'
 import { useEffect } from 'react'
 // import { motion } from 'framer-motion'
-import { useAppStore } from '@/stores/useAppStore'
+import { useAppContext } from '@/contexts/AppContext'
 import type { Language } from '@/types'
 
 const LanguageSwitcher = () => {
-  const { language, setLanguage } = useAppStore()
+  const { language, setLanguage } = useAppContext()
 
   // Persist language preference
   useEffect(() => {
