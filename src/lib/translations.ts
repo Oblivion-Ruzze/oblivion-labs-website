@@ -132,7 +132,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       },
       info: {
         email: 'hola@oblivion-labs.com',
-        phone: 'Available via email',
+        phone: '+53 5639 5275',
         location: 'Global Remote Team',
         response: 'Response within 24 hours',
         getInTouch: 'Get in Touch',
@@ -592,7 +592,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       },
       info: {
         email: 'hola@oblivion-labs.com',
-        phone: 'Disponible vía email',
+        phone: '+53 5639 5275',
         location: 'Equipo Remoto Global',
         response: 'Respuesta en 24 horas',
         getInTouch: 'Ponte en Contacto',
