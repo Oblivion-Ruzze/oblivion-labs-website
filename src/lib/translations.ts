@@ -77,8 +77,8 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
           description: 'Proven track record of delivering high-quality software solutions'
         },
         leadership: {
-          title: 'Design Expertise',
-          description: 'Over +15 professional logos designed and complete branding packages delivered'
+          title: 'Graphic Design Expertise',
+          description: 'Over +15 professional logos designed and complete branding packages delivered (separate from programming projects)'
         }
       }
     },
@@ -92,7 +92,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       stats: {
         technologies: 'Technologies Mastered',
         experience: 'Years Programming',
-        projects: 'Real Projects Completed'
+        projects: 'Programming Projects Completed'
       }
     },
     projects: {
@@ -133,7 +133,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       info: {
         email: 'hola@oblivion-labs.com',
         phone: '+53 5639 5275',
-        location: 'Global Remote Team',
+        location: 'Calle G, entre Calle 4ta y Avenida de Céspedes, Sueño, Santiago de Cuba',
         response: 'Response within 24 hours',
         getInTouch: 'Get in Touch',
         getInTouchDescription: 'Ready to bring your vision to life? Let\'s discuss your project and see how we can help you achieve your goals.',
@@ -537,8 +537,8 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
           description: 'Aprendizaje continuo a pesar de condiciones desafiantes en Cuba'
         },
         leadership: {
-          title: 'Experiencia en Diseño',
-          description: 'Más de +15 logos profesionales diseñados y paquetes completos de branding entregados'
+          title: 'Experiencia en Diseño Gráfico',
+          description: 'Más de +15 logos profesionales diseñados y paquetes completos de branding entregados (separados de los proyectos de programación)'
         }
       }
     },
@@ -552,7 +552,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       stats: {
         technologies: 'Tecnologías Dominadas',
         experience: 'Años Programando',
-        projects: 'Proyectos Reales Completados'
+        projects: 'Proyectos de Programación Completados'
       }
     },
     projects: {
@@ -593,7 +593,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       info: {
         email: 'hola@oblivion-labs.com',
         phone: '+53 5639 5275',
-        location: 'Equipo Remoto Global',
+        location: 'Calle G, entre Calle 4ta y Avenida de Céspedes, Sueño, Santiago de Cuba',
         response: 'Respuesta en 24 horas',
         getInTouch: 'Ponte en Contacto',
         getInTouchDescription: '¿Listo para dar vida a tu visión? Hablemos sobre tu proyecto y veamos cómo podemos ayudarte a lograr tus objetivos.',
