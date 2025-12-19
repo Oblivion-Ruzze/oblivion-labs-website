@@ -30,7 +30,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
           description: 'Delivering enterprise-grade solutions'
         },
         projects: {
-          number: '55+',
+          number: '5+',
           title: 'Projects Delivered',
           description: 'Successful client implementations'
         }
@@ -65,7 +65,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       },
       stats: {
         projects: {
-          title: '+3 Projects Delivered',
+          title: '+5 Projects Delivered',
           description: 'Real client projects including cultural centers, medical billing, handyman services, construction companies, and trucking businesses'
         },
         satisfaction: {
@@ -490,7 +490,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
           description: 'Entregando soluciones de nivel empresarial'
         },
         projects: {
-          number: '55+',
+          number: '5+',
           title: 'Proyectos Entregados',
           description: 'Implementaciones exitosas para clientes'
         }
@@ -525,7 +525,7 @@ export const translations: Record<'en' | 'es', LanguageContent> = {
       },
       stats: {
         projects: {
-          title: '+3 Proyectos Entregados',
+          title: '+5 Proyectos Entregados',
           description: 'Proyectos reales de clientes incluyendo centros culturales, facturación médica, servicios de handyman, empresas de construcción y empresas de rastras'
         },
         satisfaction: {
